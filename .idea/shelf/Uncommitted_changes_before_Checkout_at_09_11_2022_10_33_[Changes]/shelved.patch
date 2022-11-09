@@ -1,0 +1,31 @@
+Index: app/src/main/java/com/example/android/marsphotos/overview/OverviewViewModel.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>/*\r\n * Copyright (C) 2021 The Android Open Source Project.\r\n *\r\n * Licensed under the Apache License, Version 2.0 (the \"License\");\r\n * you may not use this file except in compliance with the License.\r\n * You may obtain a copy of the License at\r\n *\r\n *     http://www.apache.org/licenses/LICENSE-2.0\r\n *\r\n * Unless required by applicable law or agreed to in writing, software\r\n * distributed under the License is distributed on an \"AS IS\" BASIS,\r\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\r\n * See the License for the specific language governing permissions and\r\n * limitations under the License.\r\n */\r\n\r\npackage com.example.android.marsphotos.overview\r\n\r\nimport androidx.lifecycle.LiveData\r\nimport androidx.lifecycle.MutableLiveData\r\nimport androidx.lifecycle.ViewModel\r\n\r\n/**\r\n * The [ViewModel] that is attached to the [OverviewFragment].\r\n */\r\nclass OverviewViewModel : ViewModel() {\r\n\r\n    // The internal MutableLiveData that stores the status of the most recent request\r\n    private val _status = MutableLiveData<String>()\r\n\r\n    // The external immutable LiveData for the request status\r\n    val status: LiveData<String> = _status\r\n    /**\r\n     * Call getMarsPhotos() on init so we can display status immediately.\r\n     */\r\n    init {\r\n        getMarsPhotos()\r\n    }\r\n\r\n    /**\r\n     * Gets Mars photos information from the Mars API Retrofit service and updates the\r\n     * [MarsPhoto] [List] [LiveData].\r\n     */\r\n    private fun getMarsPhotos() {\r\n        _status.value = \"Set the Mars API status response here!\"\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/android/marsphotos/overview/OverviewViewModel.kt b/app/src/main/java/com/example/android/marsphotos/overview/OverviewViewModel.kt
+--- a/app/src/main/java/com/example/android/marsphotos/overview/OverviewViewModel.kt	
++++ b/app/src/main/java/com/example/android/marsphotos/overview/OverviewViewModel.kt	
+@@ -19,6 +19,9 @@
+ import androidx.lifecycle.LiveData
+ import androidx.lifecycle.MutableLiveData
+ import androidx.lifecycle.ViewModel
++import androidx.lifecycle.viewModelScope
++import com.example.android.marsphotos.network.MarsApi
++import kotlinx.coroutines.launch
+ 
+ /**
+  * The [ViewModel] that is attached to the [OverviewFragment].
+@@ -42,6 +45,9 @@
+      * [MarsPhoto] [List] [LiveData].
+      */
+     private fun getMarsPhotos() {
+-        _status.value = "Set the Mars API status response here!"
++        viewModelScope.launch {
++            val listResult = MarsApi.retrofitService.getPhotos()
++            _status.value = listResult
++        }
+     }
+ }

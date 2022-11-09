@@ -1,0 +1,44 @@
+Index: .idea/.name
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/.name b/.idea/.name
+new file mode 100644
+--- /dev/null	
++++ b/.idea/.name	
+@@ -0,0 +1,1 @@
++MarsPhotos
+\ No newline at end of file
+Index: app/src/main/java/com/example/android/marsphotos/network/MarsPhoto.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>/*\r\n * Copyright (C) 2021 The Android Open Source Project.\r\n *\r\n * Licensed under the Apache License, Version 2.0 (the \"License\");\r\n * you may not use this file except in compliance with the License.\r\n * You may obtain a copy of the License at\r\n *\r\n *     http://www.apache.org/licenses/LICENSE-2.0\r\n *\r\n * Unless required by applicable law or agreed to in writing, software\r\n * distributed under the License is distributed on an \"AS IS\" BASIS,\r\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\r\n * See the License for the specific language governing permissions and\r\n * limitations under the License.\r\n */\r\n\r\npackage com.example.android.marsphotos.network\r\n\r\nimport com.squareup.moshi.Json\r\n\r\n/**\r\n * This data class defines a Mars photo which includes an ID, and the image URL.\r\n * The property names of this data class are used by Moshi to match the names of values in JSON.\r\n */\r\ndata class MarsPhoto(\r\n        val id: String,\r\n        // used to map img_src from the JSON to imgSrcUrl in our class\r\n        @Json(name = \"img_src\") val imgSrcUrl: String\r\n)
+===================================================================
+diff --git a/app/src/main/java/com/example/android/marsphotos/network/MarsPhoto.kt b/app/src/main/java/com/example/android/marsphotos/network/MarsPhoto.kt
+--- a/app/src/main/java/com/example/android/marsphotos/network/MarsPhoto.kt	
++++ b/app/src/main/java/com/example/android/marsphotos/network/MarsPhoto.kt	
+@@ -23,7 +23,7 @@
+  * The property names of this data class are used by Moshi to match the names of values in JSON.
+  */
+ data class MarsPhoto(
+-        val id: String,
+-        // used to map img_src from the JSON to imgSrcUrl in our class
+-        @Json(name = "img_src") val imgSrcUrl: String
++    val id: String,
++    // used to map img_src from the JSON to imgSrcUrl in our class
++    @Json(name = "img_src") val imgSrcUrl: String
+ )
+\ No newline at end of file
+Index: .idea/.name
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/.name b/.idea/.name
+new file mode 100644
+--- /dev/null	
++++ b/.idea/.name	
+@@ -0,0 +1,1 @@
++MarsPhotos
+\ No newline at end of file
